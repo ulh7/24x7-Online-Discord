@@ -15,8 +15,8 @@ from keep_alive import keep_alive
 init(autoreset=True)
 
 # User-defined settings
-STATUS = "dnd"  # Set status as "online", "dnd", or "idle"
-CUSTOM_STATUS = "CHANGE ME! | yt/The Third Element"  # Custom Status Message here
+STATUS = "online"  # Set status as "online", "dnd", or "idle"
+CUSTOM_STATUS = "67"  # Custom Status Message here
 
 # Retrieve Discord token from environment variables
 TOKEN = os.getenv("DISCORD_TOKEN")
