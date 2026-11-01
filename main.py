@@ -40,11 +40,15 @@ discriminator = user_info["discriminator"]
 user_id = user_info["id"]
 
 async def connect_discord_gateway(token, status):
-    async with websockets.connect("wss://gateway.discord.gg/?v=9&encoding=json") as ws:
+    # إضافة max_size لمنع حدوث خطأ PayloadTooBig للبيانات الكبيرة
+    async with websockets.connect(
+        "wss://gateway.discord.gg/?v=9&encoding=json",
+        max_size=50 * 1024 * 1024  # 50MB (أو يمكنك استخدام None لإلغاء الحد نهائياً)
+    ) as ws:
         # Receive gateway hello event
         hello_event = json.loads(await ws.recv())
         heartbeat_interval = hello_event["d"]["heartbeat_interval"]
-
+        
         # Authenticate and set user presence (status)
         auth_payload = {
             "op": 2,
